@@ -1,0 +1,1 @@
+Placeholder for UI screenshots. Take screenshots of frontend index.html showing booking form, rooms table, and feedback form and place here as PNG files named booking.png, rooms.png, feedback.png.
