@@ -67,6 +67,28 @@ Notes / caveats
 If you have questions about any file or want me to walk through the code, ask and I can explain specific parts step-by-step.
 
 Good luck grading!
+
+Run / manage the server (helper script)
+--------------------------------------
+I added a small helper script at `scripts/server.sh` to start/stop/restart the backend server using the project's virtualenv.
+
+Examples:
+
+```bash
+# Start the server (runs in background, logs to server.log)
+./scripts/server.sh start
+
+# Check status
+./scripts/server.sh status
+
+# Restart
+./scripts/server.sh restart
+
+# Stop
+./scripts/server.sh stop
+```
+
+The script uses `backend/.venv/bin/python` and will write a pidfile to `server.pid` and logs to `server.log` in the repo root.
 # Hotel Management System — Mini Project
 
 This repository contains a complete mini-project implementing a Hotel Management System that demonstrates both relational (MySQL) and NoSQL (MongoDB) database features. It is intended as an academic deliverable covering SDLC stages: requirements, design, implementation, testing, and documentation.
