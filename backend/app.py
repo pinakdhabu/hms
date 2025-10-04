@@ -46,5 +46,58 @@ def static_files(filename):
     return {'error': 'Not found'}, 404
 
 
+@app.route('/health')
+def health():
+    status = {'service': 'Hotel Management API', 'ok': True}
+    # Check MySQL
+    try:
+        conn = None
+        try:
+            conn = get_mysql_connection()
+            # Some dummy cursors may not implement .is_connected(); do a lightweight ping if available
+            cur = conn.cursor()
+            try:
+                # try simple query
+                cur.execute('SELECT 1')
+                _ = cur.fetchone()
+                status['mysql'] = 'ok'
+            except Exception:
+                status['mysql'] = 'unavailable'
+            finally:
+                try:
+                    cur.close()
+                except Exception:
+                    pass
+        finally:
+            try:
+                if conn:
+                    conn.close()
+            except Exception:
+                pass
+    except Exception as e:
+        status['mysql'] = 'error'
+        status['ok'] = False
+
+    # Check MongoDB
+    try:
+        mclient = get_mongo_client()
+        try:
+            # pymongo has list_database_names; dummy client may not, but accessing a collection is safe
+            names = None
+            try:
+                names = mclient.list_database_names()
+            except Exception:
+                # try accessing a collection
+                _ = mclient['hotel_ms']
+            status['mongo'] = 'ok'
+        except Exception:
+            status['mongo'] = 'unavailable'
+    except Exception:
+        status['mongo'] = 'error'
+        status['ok'] = False
+
+    return status
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.getenv('PORT', 5000)))

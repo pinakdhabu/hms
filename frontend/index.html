@@ -3,11 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hotel Management - Demo UI</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/styles.css" rel="stylesheet">
+  <title>Hotel Management - Demo UI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/styles.css" rel="stylesheet">
   </head>
   <body class="bg-light">
+    <a class="skip-link" href="#content">Skip to content</a>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Hotel Management</a>
@@ -16,22 +18,22 @@
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link active" href="#" id="nav-home">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" id="nav-book">Book</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" id="nav-rooms">Rooms</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" id="nav-resv">Reservations</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" id="nav-pay">Payments</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" id="nav-feedback">Feedback</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" id="nav-staff">Staff</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" id="nav-dashboard">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" id="nav-about">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" id="nav-contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/home.html" id="nav-home" aria-label="Home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/book.html" id="nav-book" aria-label="Book">Book</a></li>
+            <li class="nav-item"><a class="nav-link" href="/rooms.html" id="nav-rooms" aria-label="Rooms">Rooms</a></li>
+            <li class="nav-item"><a class="nav-link" href="/reservations.html" id="nav-resv" aria-label="Reservations">Reservations</a></li>
+            <li class="nav-item"><a class="nav-link" href="/payments.html" id="nav-pay" aria-label="Payments">Payments</a></li>
+            <li class="nav-item"><a class="nav-link" href="/feedback.html" id="nav-feedback" aria-label="Feedback">Feedback</a></li>
+            <li class="nav-item"><a class="nav-link" href="/staff.html" id="nav-staff" aria-label="Staff">Staff</a></li>
+            <li class="nav-item"><a class="nav-link" href="/dashboard.html" id="nav-dashboard" aria-label="Dashboard">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about.html" id="nav-about" aria-label="About">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact.html" id="nav-contact" aria-label="Contact">Contact</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <main class="container">
+  <main id="content" class="container" role="main">
       <div id="content">
         <section id="home" class="card p-4 mb-4">
           <h2>Welcome</h2>
@@ -40,26 +42,26 @@
 
         <section id="book" class="card p-4 mb-4 d-none">
           <h2>Book a Room</h2>
-          <form id="bookingForm" class="row g-3">
+          <form id="bookingForm" class="row g-3" aria-labelledby="bookHeading">
             <div class="col-md-3">
-              <label class="form-label">Customer ID</label>
-              <input class="form-control" id="customerId" type="number" placeholder="e.g. 1">
+              <label class="form-label" for="customerId">Customer ID</label>
+              <input class="form-control" id="customerId" name="customerId" type="number" placeholder="e.g. 1" aria-required="true">
             </div>
             <div class="col-md-3">
-              <label class="form-label">Room</label>
-              <select id="roomSelect" class="form-select"></select>
+              <label class="form-label" for="roomSelect">Room</label>
+              <select id="roomSelect" name="roomSelect" class="form-select" aria-required="true"></select>
             </div>
             <div class="col-md-3">
-              <label class="form-label">Check-in</label>
-              <input class="form-control" id="checkIn" type="date">
+              <label class="form-label" for="checkIn">Check-in</label>
+              <input class="form-control" id="checkIn" name="checkIn" type="date">
             </div>
             <div class="col-md-3">
-              <label class="form-label">Check-out</label>
-              <input class="form-control" id="checkOut" type="date">
+              <label class="form-label" for="checkOut">Check-out</label>
+              <input class="form-control" id="checkOut" name="checkOut" type="date">
             </div>
             <div class="col-12">
-              <button class="btn btn-primary" id="btnBook">Book Room</button>
-              <span id="bookingResult" class="ms-3"></span>
+              <button class="btn btn-primary" id="btnBook" type="submit" aria-label="Book Room">Book Room</button>
+              <span id="bookingResult" class="ms-3" role="status" aria-live="polite"></span>
             </div>
           </form>
         </section>
@@ -78,7 +80,7 @@
         <section id="reservations" class="card p-4 mb-4 d-none">
           <h2>Reservations</h2>
           <div class="row g-3 mb-3">
-            <div class="col-md-4"><input id="lookupResvId" class="form-control" placeholder="Reservation ID"></div>
+            <div class="col-md-4"><label class="form-label" for="lookupResvId">Reservation ID</label><input id="lookupResvId" class="form-control" placeholder="Reservation ID" aria-label="Reservation ID"></div>
             <div class="col-md-8">
               <button id="btnLookupResv" class="btn btn-primary">Lookup</button>
               <button id="btnCancelResv" class="btn btn-danger ms-2">Cancel Reservation</button>
@@ -114,29 +116,30 @@
 
         <section id="payments" class="card p-4 mb-4 d-none">
           <h2>Payments</h2>
-          <form id="paymentForm" class="row g-3">
-            <div class="col-md-3"><input id="payResvId" class="form-control" placeholder="Reservation ID"></div>
-            <div class="col-md-3"><input id="payAmount" class="form-control" placeholder="Amount"></div>
-            <div class="col-md-3"><input id="payMethod" class="form-control" placeholder="Method (card/cash)"></div>
-            <div class="col-md-3"><button class="btn btn-success" id="btnPay">Record Payment</button></div>
+          <form id="paymentForm" class="row g-3" aria-labelledby="paymentsHeading">
+            <div class="col-md-3"><label class="form-label" for="payResvId">Reservation ID</label><input id="payResvId" name="payResvId" class="form-control" placeholder="Reservation ID"></div>
+            <div class="col-md-3"><label class="form-label" for="payAmount">Amount</label><input id="payAmount" name="payAmount" class="form-control" placeholder="Amount" inputmode="decimal"></div>
+            <div class="col-md-3"><label class="form-label" for="payMethod">Method</label><input id="payMethod" name="payMethod" class="form-control" placeholder="Method (card/cash)"></div>
+            <div class="col-md-3"><button class="btn btn-success" id="btnPay" type="submit" aria-label="Record Payment">Record Payment</button></div>
           </form>
           <hr>
           <div class="mt-3">
+            <label class="form-label" for="listPaymentsResv">Reservation ID (list payments)</label>
             <input id="listPaymentsResv" class="form-control" placeholder="Reservation ID to list payments">
-            <button id="btnListPayments" class="btn btn-secondary mt-2">List Payments</button>
-            <pre id="paymentsList" class="bg-light p-3 border mt-2"></pre>
+            <button id="btnListPayments" class="btn btn-secondary mt-2" type="button" aria-label="List Payments">List Payments</button>
+            <pre id="paymentsList" class="bg-light p-3 border mt-2" role="status" aria-live="polite"></pre>
           </div>
         </section>
 
         <section id="feedback" class="card p-4 mb-4 d-none">
           <h2>Feedback</h2>
-          <form id="feedbackForm" class="row g-3">
-            <div class="col-md-3"><input id="fbCustomer" class="form-control" placeholder="Customer ID"></div>
-            <div class="col-md-3"><input id="fbReservation" class="form-control" placeholder="Reservation ID"></div>
-            <div class="col-md-3"><input id="fbRoomType" class="form-control" placeholder="Room Type"></div>
-            <div class="col-md-1"><input id="fbScore" class="form-control" type="number" min="1" max="5" placeholder="Score"></div>
-            <div class="col-md-12"><textarea id="fbComment" class="form-control" placeholder="Comment"></textarea></div>
-            <div class="col-12"><button class="btn btn-success" id="btnFeedback">Submit Feedback</button> <span id="feedbackResult" class="ms-3"></span></div>
+          <form id="feedbackForm" class="row g-3" aria-labelledby="feedbackHeading">
+            <div class="col-md-3"><label class="form-label" for="fbCustomer">Customer ID</label><input id="fbCustomer" name="fbCustomer" class="form-control" placeholder="Customer ID"></div>
+            <div class="col-md-3"><label class="form-label" for="fbReservation">Reservation ID</label><input id="fbReservation" name="fbReservation" class="form-control" placeholder="Reservation ID"></div>
+            <div class="col-md-3"><label class="form-label" for="fbRoomType">Room Type</label><input id="fbRoomType" name="fbRoomType" class="form-control" placeholder="Room Type"></div>
+            <div class="col-md-1"><label class="form-label" for="fbScore">Score</label><input id="fbScore" name="fbScore" class="form-control" type="number" min="1" max="5" placeholder="Score"></div>
+            <div class="col-md-12"><label class="form-label" for="fbComment">Comment</label><textarea id="fbComment" name="fbComment" class="form-control" placeholder="Comment"></textarea></div>
+            <div class="col-12"><button class="btn btn-success" id="btnFeedback" type="submit" aria-label="Submit Feedback">Submit Feedback</button> <span id="feedbackResult" class="ms-3" role="status" aria-live="polite"></span></div>
           </form>
         </section>
       </div>
