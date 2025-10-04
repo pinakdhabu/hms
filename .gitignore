@@ -4,3 +4,6 @@ venv/
 __pycache__/
 node_modules/
 *.pyc
+
+# local server log
+server.log

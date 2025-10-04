@@ -17,7 +17,7 @@ def add_review():
             'roomType': data.get('roomType'),
             'score': data.get('score'),
             'comment': data.get('comment'),
-            'createdAt': __import__('datetime').datetime.utcnow()
+            'createdAt': __import__('datetime').datetime.now(__import__('datetime').timezone.utc)
         }
         res = db.reviews.insert_one(doc)
         return jsonify({'insertedId': str(res.inserted_id)}), 201

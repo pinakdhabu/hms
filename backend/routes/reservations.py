@@ -67,7 +67,7 @@ def create_reservation():
             try:
                 mclient = get_mongo_client()
                 db = mclient['hotel_ms']
-                db.logs.insert_one({ 'level': 'INFO', 'message': 'Reservation created', 'reservationId': res_id, 'createdAt': __import__('datetime').datetime.utcnow() })
+                db.logs.insert_one({ 'level': 'INFO', 'message': 'Reservation created', 'reservationId': res_id, 'createdAt': __import__('datetime').datetime.now(__import__('datetime').timezone.utc) })
             except Exception:
                 # ignore mongo logging failures
                 pass
@@ -84,7 +84,7 @@ def create_reservation():
         try:
             mclient = get_mongo_client()
             db = mclient['hotel_ms']
-            db.logs.insert_one({ 'level': 'INFO', 'message': 'Reservation created (mock)', 'reservationId': res_id, 'createdAt': __import__('datetime').datetime.utcnow() })
+            db.logs.insert_one({ 'level': 'INFO', 'message': 'Reservation created (mock)', 'reservationId': res_id, 'createdAt': __import__('datetime').datetime.now(__import__('datetime').timezone.utc) })
         except Exception:
             pass
         return jsonify({'reservation_id': res_id}), 201
@@ -118,7 +118,7 @@ def cancel_reservation(reservation_id):
             try:
                 mclient = get_mongo_client()
                 db = mclient['hotel_ms']
-                db.logs.insert_one({ 'level': 'INFO', 'message': 'Reservation cancelled', 'reservationId': reservation_id, 'createdAt': __import__('datetime').datetime.utcnow() })
+                db.logs.insert_one({ 'level': 'INFO', 'message': 'Reservation cancelled', 'reservationId': reservation_id, 'createdAt': __import__('datetime').datetime.now(__import__('datetime').timezone.utc) })
             except Exception:
                 pass
             return jsonify({'cancelled': True})
@@ -134,7 +134,7 @@ def cancel_reservation(reservation_id):
             try:
                 mclient = get_mongo_client()
                 db = mclient['hotel_ms']
-                db.logs.insert_one({ 'level': 'INFO', 'message': 'Reservation cancelled (mock)', 'reservationId': reservation_id, 'createdAt': __import__('datetime').datetime.utcnow() })
+                db.logs.insert_one({ 'level': 'INFO', 'message': 'Reservation cancelled (mock)', 'reservationId': reservation_id, 'createdAt': __import__('datetime').datetime.now(__import__('datetime').timezone.utc) })
             except Exception:
                 pass
             return jsonify({'cancelled': True})

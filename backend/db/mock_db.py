@@ -33,7 +33,7 @@ def create_reservation(customer_id, room_id, check_in, check_out):
             'check_in': check_in,
             'check_out': check_out,
             'status': 'BOOKED',
-            'created_at': datetime.utcnow().isoformat()
+            'created_at': datetime.now(datetime.timezone.utc).isoformat()
         }
         _reservations[res_id] = rec
         # mark room unavailable in mock
@@ -61,7 +61,7 @@ def cancel_reservation(reservation_id):
 def add_payment(reservation_id, amount, method):
     with _lock:
         arr = _payments.setdefault(reservation_id, [])
-        p = {'amount': amount, 'method': method, 'created_at': datetime.utcnow().isoformat()}
+        p = {'amount': amount, 'method': method, 'created_at': datetime.now(datetime.timezone.utc).isoformat()}
         arr.append(p)
         return p
 
@@ -74,7 +74,7 @@ def insert_review(payload):
     with _lock:
         doc = payload.copy()
         doc['_id'] = len(_reviews) + 1
-        doc['createdAt'] = datetime.utcnow().isoformat()
+        doc['createdAt'] = datetime.now(datetime.timezone.utc).isoformat()
         _reviews.append(doc)
         return doc
 
